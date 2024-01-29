@@ -21,8 +21,9 @@ public class CalculatorController {
 
     @GetMapping("/plus")
     public String add(@RequestParam("num1") Integer num1, @RequestParam("num2") Integer num2) {
-        if (num1 == null || num2 == null) {
-            return "Ошибка: Отсутствует один или оба параметра";
+        String error = calculatorService.checkParameters(num1, num2);
+        if (error != null) {
+            return error;
         }
         int sum = calculatorService.add(num1, num2);
         return num1 + "+" + num2 + "=" + sum;

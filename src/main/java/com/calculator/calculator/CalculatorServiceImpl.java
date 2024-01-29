@@ -9,6 +9,13 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     @Override
+    public String checkParameters(Integer num1, Integer num2) {
+        if (num1 == null || num2 == null) {
+            return "Ошибка: Отсутствует один или оба параметра";
+        }
+        return null;
+    }
+    @Override
     public int add(int num1, int num2) {
         return num1 + num2;
     }
