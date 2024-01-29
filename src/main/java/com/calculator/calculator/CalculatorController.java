@@ -31,8 +31,9 @@ public class CalculatorController {
 
     @GetMapping("/minus")
     public String subtract (@RequestParam("num1") Integer num1, @RequestParam("num2") Integer num2) {
-        if (num1 == null || num2 == null) {
-            return "Ошибка: Отсутствует один или оба параметра";
+        String error = calculatorService.checkParameters(num1, num2);
+        if (error != null) {
+            return error;
         }
         int difference = calculatorService.subtract(num1, num2);
         return num1 + "-" + num2 + "=" + difference;
@@ -40,8 +41,9 @@ public class CalculatorController {
 
     @GetMapping("/multiply")
     public String multiply (@RequestParam("num1") Integer num1, @RequestParam("num2") Integer num2) {
-        if (num1 == null || num2 == null) {
-            return "Ошибка: Отсутствует один или оба параметра";
+        String error = calculatorService.checkParameters(num1, num2);
+        if (error != null) {
+            return error;
         }
         int product = calculatorService.multiply(num1, num2);
         return num1 + "*" + num2 + "=" + product;
@@ -49,8 +51,9 @@ public class CalculatorController {
 
     @GetMapping("/divide")
     public String divide (@RequestParam("num1") Integer num1, @RequestParam("num2") Integer num2) {
-        if (num1 == null || num2 == null) {
-            return "Ошибка: Отсутствует один или оба параметра";
+        String error = calculatorService.checkParameters(num1, num2);
+        if (error != null) {
+            return error;
         }
         if (num2 == 0) {
             return "Ошибка: Деление на ноль";
