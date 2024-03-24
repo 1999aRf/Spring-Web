@@ -1,5 +1,6 @@
-package com.calculator.calculator;
+package com.calculator.calculator.service;
 
+import com.calculator.calculator.exceptions.DivicionByZeroException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,7 +34,7 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     public int divide(int num1, int num2) {
         if (num2 == 0) {
-            throw new ArithmeticException("Деление на ноль");
+            throw new DivicionByZeroException("Ошибка: Деление на ноль");
         }
         return num1 / num2;
     }
